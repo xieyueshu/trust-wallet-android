@@ -3,9 +3,9 @@
 [![Build Status](https://travis-ci.org/TrustWallet/trust-wallet-android.svg?branch=master)](https://travis-ci.org/TrustWallet/trust-wallet-android)
 [![License](https://img.shields.io/badge/license-GPL3-green.svg?style=flat)](https://github.com/fastlane/fastlane/blob/master/LICENSE)
 
-<img src="https://raw.githubusercontent.com/xieyueshu/trust-wallet-android/master/resources/android_cover.png">
-
 ### 欢迎访问以太坊钱包开源Android版，它是基于TrustWallet的Android 1.4.2做了小部分功能升级的一个新的版本，我把它定义为2.0.0，主要用于对以太坊钱包开发技术感兴趣的同学进行学习。
+
+<img src="https://raw.githubusercontent.com/xieyueshu/trust-wallet-android/master/resources/android_cover.png">
 
 ### 这个版本主要新增的特性如下：
 #### 1. 提供了DAPP浏览器的功能，支持H5开发的DAPP应用在钱包中运行。
