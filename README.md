@@ -16,10 +16,10 @@
 
 DAPP浏览器功能其中几个代表性的界面如下：
 
-一、在右上角设置图标进去后，可以看到一个新的功能项“DAPP”，点击进入即可显示一个DAPP内嵌浏览器，顶部支持输入DAPP地址URL。
+一、在右上角设置图标进去后，可以看到一个新的功能项“DAPP”，点击进入.
 [<img src="https://raw.githubusercontent.com/xieyueshu/trust-wallet-android/master/resources/dapp-001.png">]
 
-二、以一个掷骰子以太坊区块链游戏为例，在URL输入该地址（（https://dice2.win/），点击跳转按钮。
+二、以一个掷骰子以太坊区块链游戏为例，在URL输入该地址（dice2.win），点击跳转按钮。
 [<img src="https://raw.githubusercontent.com/xieyueshu/trust-wallet-android/master/resources/dapp-002.png">]
 
 三、在抛硬币游戏中下注0.1ETH，将会自动跳转到钱包APP，使用当前账户私钥进行签名后发起交易。
