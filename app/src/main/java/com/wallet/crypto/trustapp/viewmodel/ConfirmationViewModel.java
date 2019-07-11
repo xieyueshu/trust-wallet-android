@@ -40,10 +40,10 @@ public class ConfirmationViewModel extends BaseViewModel {
         this.gasSettingsRouter = gasSettingsRouter;
     }
 
-    public void createTransaction(String from, String to, BigInteger amount, BigInteger gasPrice, BigInteger gasLimit) {
+        public void createTransaction(String from, String to, BigInteger amount, BigInteger gasPrice, BigInteger gasLimit,byte[] data) {
         progress.postValue(true);
         disposable = createTransactionInteract
-                .create(new Wallet(from), to, amount, gasPrice, gasLimit, null)
+                .create(new Wallet(from), to, amount, gasPrice, gasLimit, data)
                 .subscribe(this::onCreateTransaction, this::onError);
     }
 

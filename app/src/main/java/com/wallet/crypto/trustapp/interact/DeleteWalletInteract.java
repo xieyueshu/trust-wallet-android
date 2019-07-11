@@ -25,4 +25,11 @@ public class DeleteWalletInteract {
 				.andThen(walletRepository.fetchWallets())
 				.observeOn(AndroidSchedulers.mainThread());
 	}
+	public Single<Wallet[]> deletePhrase(Wallet wallet) {
+		return passwordStore.getPassword(wallet)
+				.flatMapCompletable(password -> walletRepository.deletePhraseAccount(wallet.address))
+				.andThen(walletRepository.fetchWallets())
+				.observeOn(AndroidSchedulers.mainThread());
+	}
+
 }

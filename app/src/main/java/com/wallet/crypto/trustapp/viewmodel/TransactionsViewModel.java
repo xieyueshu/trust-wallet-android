@@ -104,7 +104,12 @@ public class TransactionsViewModel extends BaseViewModel {
                 .find()
                 .subscribe(this::onDefaultNetwork, this::onError);
     }
-
+    public void prepareDapp() {
+        progress.postValue(true);
+        disposable = findDefaultNetworkInteract
+                .find()
+                .subscribe(this::onDefaultNetwork, this::onError);
+    }
     public void fetchTransactions() {
         progress.postValue(true);
         transactionDisposable = Observable.interval(0, FETCH_TRANSACTIONS_INTERVAL, TimeUnit.SECONDS)

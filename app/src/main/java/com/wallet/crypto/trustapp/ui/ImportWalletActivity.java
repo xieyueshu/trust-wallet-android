@@ -31,7 +31,7 @@ public class ImportWalletActivity extends BaseActivity {
 
     private static final int KEYSTORE_FORM_INDEX = 0;
     private static final int PRIVATE_KEY_FORM_INDEX = 1;
-
+    private static final int PHRASE_KEY_INDEX = 2;
     private final List<Pair<String, Fragment>> pages = new ArrayList<>();
 
     @Inject
@@ -50,6 +50,8 @@ public class ImportWalletActivity extends BaseActivity {
 
         pages.add(KEYSTORE_FORM_INDEX, new Pair<>(getString(R.string.tab_keystore), ImportKeystoreFragment.create()));
         pages.add(PRIVATE_KEY_FORM_INDEX, new Pair<>(getString(R.string.tab_private_key), ImportPrivateKeyFragment.create()));
+        pages.add(PHRASE_KEY_INDEX, new Pair<>("PHRASE KEY", ImportPhraseFragment.create()));
+
         ViewPager viewPager = findViewById(R.id.viewPager);
         viewPager.setAdapter(new TabPagerAdapter(getSupportFragmentManager(), pages));
         TabLayout tabLayout = findViewById(R.id.tabLayout);
@@ -70,6 +72,8 @@ public class ImportWalletActivity extends BaseActivity {
                 .setOnImportKeystoreListener(importWalletViewModel);
         ((ImportPrivateKeyFragment) pages.get(PRIVATE_KEY_FORM_INDEX).second)
                 .setOnImportPrivateKeyListener(importWalletViewModel);
+        ((ImportPhraseFragment) pages.get(PHRASE_KEY_INDEX).second)
+                .setOnImportPhraseKeyListener(importWalletViewModel);
     }
 
     @Override

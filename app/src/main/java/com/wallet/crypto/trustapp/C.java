@@ -21,12 +21,15 @@ public abstract class C {
     public static final String ETC_SYMBOL = "ETC";
 
     public static final String GWEI_UNIT = "Gwei";
+    public static final String DAPP_RESULT_CODE = "DAPP_RESULT_CODE";
 
     public static final String EXTRA_ADDRESS = "ADDRESS";
     public static final String EXTRA_CONTRACT_ADDRESS = "CONTRACT_ADDRESS";
     public static final String EXTRA_DECIMALS = "DECIMALS";
     public static final String EXTRA_SYMBOL = "SYMBOL";
     public static final String EXTRA_SENDING_TOKENS = "SENDING_TOKENS";
+    public static final String EXTRA_DAPP_DATA = "EXTRA_DAPP_DATA";
+    public static final String EXTRA_IS_DAPP = "EXTRA_IS_DAPP";
     public static final String EXTRA_TO_ADDRESS = "TO_ADDRESS";
     public static final String EXTRA_AMOUNT = "AMOUNT";
     public static final String EXTRA_GAS_PRICE = "GAS_PRICE";

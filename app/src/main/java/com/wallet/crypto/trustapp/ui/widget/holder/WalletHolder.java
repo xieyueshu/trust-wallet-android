@@ -23,6 +23,7 @@ public class WalletHolder extends BinderViewHolder<Wallet> implements View.OnCli
 	private final ImageView deleteAction;
 	private final TextView address;
     private final ImageView exportAction;
+	private final ImageView exportPhraseAction;
     private WalletsAdapter.OnSetWalletDefaultListener onSetWalletDefaultListener;
 	private WalletsAdapter.OnWalletDeleteListener onWalletDeleteListener;
 	private WalletsAdapter.OnExportWalletListener onExportWalletListener;
@@ -34,12 +35,14 @@ public class WalletHolder extends BinderViewHolder<Wallet> implements View.OnCli
 		defaultAction = findViewById(R.id.default_action);
 		deleteAction = findViewById(R.id.delete_action);
 		exportAction = findViewById(R.id.export_action);
+		exportPhraseAction = findViewById(R.id.export_phrase_action);
 		address = findViewById(R.id.address);
 
 		address.setOnClickListener(this);
 		defaultAction.setOnClickListener(this);
 		deleteAction.setOnClickListener(this);
 		exportAction.setOnClickListener(this);
+		exportPhraseAction.setOnClickListener(this);
 	}
 
 	@Override
@@ -51,6 +54,13 @@ public class WalletHolder extends BinderViewHolder<Wallet> implements View.OnCli
 			return;
 		}
 		this.wallet = data;
+		if(this.wallet.isMnemonic){
+			exportPhraseAction.setVisibility(View.VISIBLE);
+			exportAction.setVisibility(View.INVISIBLE);
+		}else {
+			exportPhraseAction.setVisibility(View.INVISIBLE);
+			exportAction.setVisibility(View.VISIBLE);
+		}
 		address.setText(wallet.address);
 		defaultAction.setChecked(addition.getBoolean(IS_DEFAULT_ADDITION, false));
 		defaultAction.setEnabled(true);
@@ -90,6 +100,11 @@ public class WalletHolder extends BinderViewHolder<Wallet> implements View.OnCli
                     onExportWalletListener.onExport(wallet);
                 }
             } break;
+			case R.id.export_phrase_action: {
+				if (onExportWalletListener != null) {
+					onExportWalletListener.onExportPhrase(wallet);
+				}
+			} break;
 		}
 	}
 }

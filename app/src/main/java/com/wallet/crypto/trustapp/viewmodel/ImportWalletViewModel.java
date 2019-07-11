@@ -6,9 +6,10 @@ import android.arch.lifecycle.MutableLiveData;
 import com.wallet.crypto.trustapp.entity.Wallet;
 import com.wallet.crypto.trustapp.interact.ImportWalletInteract;
 import com.wallet.crypto.trustapp.ui.widget.OnImportKeystoreListener;
+import com.wallet.crypto.trustapp.ui.widget.OnImportPhraseKeyListener;
 import com.wallet.crypto.trustapp.ui.widget.OnImportPrivateKeyListener;
 
-public class ImportWalletViewModel extends BaseViewModel implements OnImportKeystoreListener, OnImportPrivateKeyListener {
+public class ImportWalletViewModel extends BaseViewModel implements OnImportKeystoreListener, OnImportPrivateKeyListener, OnImportPhraseKeyListener {
 
     private final ImportWalletInteract importWalletInteract;
     private final MutableLiveData<Wallet> wallet = new MutableLiveData<>();
@@ -30,6 +31,13 @@ public class ImportWalletViewModel extends BaseViewModel implements OnImportKeys
         progress.postValue(true);
         importWalletInteract
                 .importPrivateKey(key)
+                .subscribe(this::onWallet, this::onError);
+    }
+    @Override
+    public void onPhraseKey(String key) {
+        progress.postValue(true);
+        importWalletInteract
+                .importPhraseKey(key)
                 .subscribe(this::onWallet, this::onError);
     }
 

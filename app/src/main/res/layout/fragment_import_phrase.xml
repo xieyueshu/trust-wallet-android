@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/login_form"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+
+
+            <EditText
+                android:id="@+id/phrase_key"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:imeActionLabel="@string/action_sign_in_short"
+                android:background="@drawable/prase_bg"
+                android:imeOptions="actionUnspecified"
+                android:maxLines="7"
+                android:minHeight="130dp"
+                android:padding="10dp"
+                />
+
+        <Button
+            android:id="@+id/import_action"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="15dp"
+
+            android:text="@string/action_import" />
+
+</LinearLayout>

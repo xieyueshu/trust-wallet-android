@@ -35,4 +35,19 @@ public class ImportWalletInteract {
                         .compose(Operators.savePassword(passwordStore, walletRepository, newPassword)))
                 .observeOn(AndroidSchedulers.mainThread());
     }
+
+    /**
+     * 增加导入助记词的控制层方法。
+     *
+     * @param phraseKey 助记词包含空格及按顺序的字符串
+     * @return
+     */
+    public Single<Wallet> importPhraseKey(String phraseKey) {
+        return passwordStore
+                .generatePassword()
+                .flatMap(newPassword -> walletRepository
+                        .importPhraseKeyToWallet(phraseKey, newPassword)
+                        .compose(Operators.savePassword(passwordStore, walletRepository, newPassword)))
+                .observeOn(AndroidSchedulers.mainThread());
+    }
 }

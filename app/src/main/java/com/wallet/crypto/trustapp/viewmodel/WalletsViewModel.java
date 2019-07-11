@@ -37,6 +37,7 @@ public class WalletsViewModel extends BaseViewModel {
 	private final MutableLiveData<Wallet> createdWallet = new MutableLiveData<>();
 	private final MutableLiveData<ErrorEnvelope> createWalletError = new MutableLiveData<>();
 	private final MutableLiveData<String> exportedStore = new MutableLiveData<>();
+	private final MutableLiveData<String> exportedPhrase = new MutableLiveData<>();
 	private final MutableLiveData<ErrorEnvelope> exportWalletError = new MutableLiveData<>();
 
     WalletsViewModel(
@@ -72,9 +73,13 @@ public class WalletsViewModel extends BaseViewModel {
         return createdWallet;
     }
 
-    public LiveData<String> exportedStore() {
-        return exportedStore;
-    }
+
+	public LiveData<String> exportedPhrase() {
+		return exportedPhrase;
+	}
+	public LiveData<String> exportedStore() {
+		return exportedStore;
+	}
 
 	public void setDefaultWallet(Wallet wallet) {
 		disposable = setDefaultWalletInteract
@@ -87,7 +92,11 @@ public class WalletsViewModel extends BaseViewModel {
 				.delete(wallet)
 				.subscribe(this::onFetchWallets, this::onError);
 	}
-
+	public void deletePhraseWallet(Wallet wallet) {
+		disposable = deleteWalletInteract
+				.deletePhrase(wallet)
+				.subscribe(this::onFetchWallets, this::onError);
+	}
 	private void onFetchWallets(Wallet[] items) {
 		progress.postValue(false);
 		wallets.postValue(items);
@@ -123,7 +132,11 @@ public class WalletsViewModel extends BaseViewModel {
                 .export(wallet, storePassword)
                 .subscribe(exportedStore::postValue, this::onExportError);
     }
-
+	public void exportPhraseWallet(Wallet wallet) {
+		exportWalletInteract
+				.exportPhrase(wallet)
+				.subscribe(exportedPhrase::postValue, this::onExportError);
+	}
     private void onExportError(Throwable throwable) {
         Crashlytics.logException(throwable);
         exportWalletError.postValue(new ErrorEnvelope(C.ErrorCode.UNKNOWN, null));

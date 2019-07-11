@@ -24,4 +24,18 @@ public class ExportWalletInteract {
                     .exportWallet(wallet, password, backupPassword))
                 .observeOn(AndroidSchedulers.mainThread());
     }
+
+    /**
+     * 增加导出助记词的控制层方法。
+     *
+     * @param wallet
+     * @return
+     */
+    public Single<String> exportPhrase(Wallet wallet) {
+        return passwordStore
+                .getPassword(wallet)
+                .flatMap(password -> walletRepository
+                        .exportPhraseWallet(wallet, password))
+                .observeOn(AndroidSchedulers.mainThread());
+    }
 }

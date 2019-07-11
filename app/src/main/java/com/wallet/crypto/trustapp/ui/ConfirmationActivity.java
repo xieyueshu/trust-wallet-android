@@ -9,6 +9,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
+import android.util.Base64;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -31,6 +34,9 @@ import javax.inject.Inject;
 
 import dagger.android.AndroidInjection;
 
+import static com.wallet.crypto.trustapp.C.EXTRA_IS_DAPP;
+import static com.wallet.crypto.trustapp.ui.DappBrowserActivity.DAPP_REQUEST_CODE;
+
 public class ConfirmationActivity extends BaseActivity {
     AlertDialog dialog;
 
@@ -50,6 +56,8 @@ public class ConfirmationActivity extends BaseActivity {
     private int decimals;
     private String contractAddress;
     private boolean confirmationForTokenTransfer = false;
+    private String payload = null;
+    private boolean isDapp = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -78,9 +86,9 @@ public class ConfirmationActivity extends BaseActivity {
         symbol = symbol == null ? C.ETH_SYMBOL : symbol;
 
         confirmationForTokenTransfer = contractAddress != null;
-
+        isDapp = getIntent().getBooleanExtra(EXTRA_IS_DAPP, false);
         toAddressText.setText(toAddress);
-
+        payload = getIntent().getStringExtra(C.EXTRA_DAPP_DATA);
         String amountString = "-" + BalanceUtils.subunitToBase(amount, decimals).toPlainString() + " " + symbol;
         valueText.setText(amountString);
         valueText.setTextColor(ContextCompat.getColor(this, R.color.red));
@@ -109,6 +117,9 @@ public class ConfirmationActivity extends BaseActivity {
                 viewModel.openGasSettings(ConfirmationActivity.this);
             }
             break;
+            case android.R.id.home:
+                onBackPressed();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -140,14 +151,17 @@ public class ConfirmationActivity extends BaseActivity {
 
     private void onSend() {
         GasSettings gasSettings = viewModel.gasSettings().getValue();
-
+        Log.d("是代币吗", confirmationForTokenTransfer + "");
         if (!confirmationForTokenTransfer) {
+
+            byte[] data = null;
+            if (!TextUtils.isEmpty(payload)) data = Base64.decode(payload, 0);
             viewModel.createTransaction(
                     fromAddressText.getText().toString(),
                     toAddressText.getText().toString(),
                     amount,
                     gasSettings.gasPrice,
-                    gasSettings.gasLimit);
+                    gasSettings.gasLimit, data);
         } else {
             viewModel.createTokenTransfer(
                     fromAddressText.getText().toString(),
@@ -159,12 +173,15 @@ public class ConfirmationActivity extends BaseActivity {
         }
     }
 
+    private String hash = null;
+
     private void onDefaultWallet(Wallet wallet) {
         fromAddressText.setText(wallet.address);
     }
 
     private void onTransaction(String hash) {
         hideDialog();
+        this.hash = hash;
         dialog = new AlertDialog.Builder(this)
                 .setTitle(R.string.transaction_succeeded)
                 .setMessage(hash)
@@ -175,6 +192,11 @@ public class ConfirmationActivity extends BaseActivity {
                     ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
                     ClipData clip = ClipData.newPlainText("transaction hash", hash);
                     clipboard.setPrimaryClip(clip);
+                    if (isDapp) {
+                        Intent intent = new Intent();
+                        intent.putExtra(C.DAPP_RESULT_CODE, hash);
+                        setResult(DAPP_REQUEST_CODE, intent);
+                    }
                     finish();
                 })
                 .create();
@@ -213,5 +235,16 @@ public class ConfirmationActivity extends BaseActivity {
                 viewModel.gasSettings().postValue(settings);
             }
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent();
+        if (!TextUtils.isEmpty(hash)) {
+            intent.putExtra(C.DAPP_RESULT_CODE, hash);
+        }
+        setResult(DAPP_REQUEST_CODE, intent);
+        super.onBackPressed();
+
     }
 }

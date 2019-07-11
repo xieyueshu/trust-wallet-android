@@ -11,6 +11,7 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
+import android.widget.Toast;
 
 import com.wallet.crypto.trustapp.C;
 import com.wallet.crypto.trustapp.R;
@@ -45,17 +46,25 @@ public class SettingsFragment extends PreferenceFragment
             manageWalletsRouter.open(getActivity(), false);
             return false;
         });
+        final Preference dapp = findPreference("pref_dapp");
 
-        findDefaultWalletInteract
-                .find()
-                .subscribe(wallet -> {
-                    PreferenceManager
-                            .getDefaultSharedPreferences(getActivity())
-                            .edit()
-                            .putString("pref_wallet", wallet.address)
-                            .apply();
-                    wallets.setSummary(wallet.address);
-                });
+        dapp.setOnPreferenceClickListener(preference -> {
+            Intent intent = new Intent(getActivity(), DappBrowserActivity.class);
+            getActivity().startActivity(intent);
+
+            return false;
+        });
+
+//        findDefaultWalletInteract
+//                .find()
+//                .subscribe(wallet -> {
+//                    PreferenceManager
+//                            .getDefaultSharedPreferences(getActivity())
+//                            .edit()
+//                            .putString("pref_wallet", wallet.address)
+//                            .apply();
+//                    wallets.setSummary(wallet.address);
+//                });
 
         final ListPreference listPreference = (ListPreference) findPreference("pref_rpcServer");
         // THIS IS REQUIRED IF YOU DON'T HAVE 'entries' and 'entryValues' in your XML

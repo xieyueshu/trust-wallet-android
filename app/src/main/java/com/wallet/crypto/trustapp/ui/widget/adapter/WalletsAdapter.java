@@ -92,5 +92,6 @@ public class WalletsAdapter extends RecyclerView.Adapter<BinderViewHolder> {
 
     public interface OnExportWalletListener {
 	    void onExport(Wallet wallet);
+		void onExportPhrase(Wallet wallet);
     }
 }

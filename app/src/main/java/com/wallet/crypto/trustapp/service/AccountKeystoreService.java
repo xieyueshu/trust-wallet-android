@@ -23,6 +23,14 @@ public interface AccountKeystoreService {
 	 */
 	Single<Wallet> importKeystore(String store, String password, String newPassword);
     Single<Wallet> importPrivateKey(String privateKey, String newPassword);
+	/**
+	 * 助记词导入具体实现方法。
+	 *
+	 * @param phraseKey
+	 * @param newPassword
+	 * @return
+	 */
+	Single<Wallet> importPhraseKey(String phraseKey, String newPassword);
 
 	/**
 	 * Export wallet to keystore
@@ -33,13 +41,21 @@ public interface AccountKeystoreService {
 	 */
 	Single<String> exportAccount(Wallet wallet, String password, String newPassword);
 
+    /**
+     * 助记词导出具体实现方法。
+     *
+     * @param wallet
+     * @param password
+     * @return
+     */
+	Single<String> exportPhrase(Wallet wallet, String password);
 	/**
 	 * Delete account from keystore
 	 * @param address account address
 	 * @param password account password
 	 */
 	Completable deleteAccount(String address, String password);
-
+	Completable deletePhraseAccount(String address);
 	/**
 	 * Sign transaction
 	 * @param signer {@link Wallet}

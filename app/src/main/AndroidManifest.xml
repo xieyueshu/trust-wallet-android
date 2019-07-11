@@ -46,6 +46,9 @@
             android:name=".ui.TransactionDetailActivity"
             android:label="@string/title_transaction_details" />
         <activity
+            android:name=".ui.DappBrowserActivity"
+            android:label="@string/action_dapp" />
+        <activity
             android:name=".ui.MyAddressActivity"
             android:label="@string/title_my_address" />
         <activity

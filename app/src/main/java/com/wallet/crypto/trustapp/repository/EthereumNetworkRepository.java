@@ -23,10 +23,12 @@ import static com.wallet.crypto.trustapp.C.ETC_SYMBOL;
 public class EthereumNetworkRepository implements EthereumNetworkRepositoryType {
 
 	private final NetworkInfo[] NETWORKS = new NetworkInfo[] {
+
 			new NetworkInfo(ETHEREUM_NETWORK_NAME, ETH_SYMBOL,
                     "https://mainnet.infura.io/llyrtzQ3YhkdESt2Fzrk",
                     "https://api.trustwalletapp.com/",
                     "https://etherscan.io/",1, true),
+
             new NetworkInfo(CLASSIC_NETWORK_NAME, ETC_SYMBOL,
                     "https://mewapi.epool.io/",
                     "https://classic.trustwalletapp.com",
