@@ -5,13 +5,13 @@
 
 <img src="https://raw.githubusercontent.com/xieyueshu/trust-wallet-android/master/resources/android_cover.png">
 
-==欢迎访问以太坊钱包开源Android版，它是基于TrustWallet的Android 1.4.2做了小部分功能升级的一个新的版本，我把它定义为2.0.0，主要用于对以太坊钱包开发技术感兴趣的同学进行学习。
+### 欢迎访问以太坊钱包开源Android版，它是基于TrustWallet的Android 1.4.2做了小部分功能升级的一个新的版本，我把它定义为2.0.0，主要用于对以太坊钱包开发技术感兴趣的同学进行学习。
 
 ### 这个版本主要新增的特性如下：
 #### 1. 提供了DAPP浏览器的功能，支持H5开发的DAPP应用在钱包中运行。
 #### 2. 提供了助记词钱包导入及助记词钱包导出的功能。
 
-DAPP浏览器功能其中几个代表性的界面如下：<br>
+### DAPP浏览器功能其中几个代表性的界面如下：<br>
 
 #### 一、在右上角设置图标进去后，可以看到一个新的功能项“DAPP”，点击进入.<br>
 <img src="https://raw.githubusercontent.com/xieyueshu/trust-wallet-android/master/resources/dapp-001.png">
@@ -23,9 +23,9 @@ DAPP浏览器功能其中几个代表性的界面如下：<br>
 <img src="https://raw.githubusercontent.com/xieyueshu/trust-wallet-android/master/resources/dapp-003.png">
 
 
-助记词钱包导入及助记词钱包导出的功能，是通过bitcoinj开源库来实现的。<br>
+### 助记词钱包导入及助记词钱包导出的功能，是通过bitcoinj开源库来实现的。<br>
 
-助记词功能界面如下：<br>
+### 助记词功能界面如下：<br>
 
 #### 一、导入助记词。<br>
 <img src="https://raw.githubusercontent.com/xieyueshu/trust-wallet-android/master/resources/phrase-001.png">
@@ -33,7 +33,7 @@ DAPP浏览器功能其中几个代表性的界面如下：<br>
 #### 二、钱包列表，包含助记词钱包。<br>
 <img src="https://raw.githubusercontent.com/xieyueshu/trust-wallet-android/master/resources/phrase-002.png">
 
-#### 一、导出助记词。<br>
+#### 三、导出助记词。<br>
 <img src="https://raw.githubusercontent.com/xieyueshu/trust-wallet-android/master/resources/phrase-003.png">
 
 
