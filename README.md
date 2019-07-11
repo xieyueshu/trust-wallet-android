@@ -26,6 +26,17 @@ DAPP浏览器功能其中几个代表性的界面如下：
 [<img src="https://raw.githubusercontent.com/xieyueshu/trust-wallet-android/master/resources/dapp-003.png">]
 
 
+助记词钱包导入及助记词钱包导出的功能，是通过bitcoinj开源库来实现的。
 
+助记词功能界面如下：
+
+一、导入助记词
+[<img src="https://raw.githubusercontent.com/xieyueshu/trust-wallet-android/master/resources/phrase-001.png">]
+
+二、钱包列表，包含助记词钱包
+[<img src="https://raw.githubusercontent.com/xieyueshu/trust-wallet-android/master/resources/phrase-002.png">]
+
+一、导出助记词
+[<img src="https://raw.githubusercontent.com/xieyueshu/trust-wallet-android/master/resources/phrase-003.png">]
 
 
